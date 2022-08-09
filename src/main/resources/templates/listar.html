@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<header th:replace="layout/layout::head"></header>
+
+<body>
+<header th:replace="layout/layout::header_nav"></header>
+
+    <div class="p-4 m-5">
+        <div class="card bg-light">
+            <div class="card-header"><span>Listado de empleados</span></div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Fecha Nac.</th>
+                            <th>Sexo</th>
+                            <th>Email</th>
+                            <th>Telefono</th>
+                            <th>Salario</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="empleado: ${listaEmpleados}">
+                            <td th:text="${empleado.id}"></td>
+                            <td th:text="${empleado.nombre}"></td>
+                            <td th:text="${empleado.apellido}"></td>
+                            <td th:text="${empleado.fechaNacimiento}"></td>
+                            <td th:text="${empleado.sexo}"></td>
+                            <td th:text="${empleado.email}"></td>
+                            <td th:text="${empleado.telefono}"></td>
+                            <td th:text="${empleado.sueldo}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+<footer th:replace="layout/layout::footer"></footer>
+</body>
+</html>
