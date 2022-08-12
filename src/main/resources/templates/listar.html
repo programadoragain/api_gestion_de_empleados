@@ -9,6 +9,9 @@
         <div class="card bg-light">
             <div class="card-header"><span>Listado de empleados</span></div>
             <div class="card-body">
+                <h4 class="card-title">
+                    <a th:href="@{/registrarempleado}" class="btn btn-primary">Agregar empleado</a>
+                </h4>
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -20,6 +23,7 @@
                             <th>Email</th>
                             <th>Telefono</th>
                             <th>Salario</th>
+                            <th>Acciónes</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,6 +36,9 @@
                             <td th:text="${empleado.email}"></td>
                             <td th:text="${empleado.telefono}"></td>
                             <td th:text="${empleado.sueldo}"></td>
+                            <td><a class="btn btn-info btn-sm" th:href="@{/verempleado/} + ${empleado.id}">Detalles</a></td>
+                            <td><a class="btn btn-warning btn-sm" th:href="@{/editarempleado/} + ${empleado.id}">Editar</a></td>
+                            <td><a class="btn btn-danger btn-sm" th:href="@{/eliminarempleado/} + ${empleado.id}" onclick="return confirm('¿Estas seguro de eliminar este empleado?');">Eliminar</a></td>
                         </tr>
                     </tbody>
                 </table>

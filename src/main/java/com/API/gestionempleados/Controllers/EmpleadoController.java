@@ -68,7 +68,7 @@ public class EmpleadoController {
         return "editarempleado";
     }
 
-    @GetMapping ("/eliminarempleado/{id}")
+    @DeleteMapping ("/eliminarempleado/{id}")
     public String eliminarEmpleado(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
         if (empleadoService.findOne(id) != null) {
             empleadoService.delete(id);
