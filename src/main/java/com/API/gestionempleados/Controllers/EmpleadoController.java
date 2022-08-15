@@ -62,8 +62,8 @@ public class EmpleadoController {
             flash.addFlashAttribute("error","El empleado no existe en la base de datos");
             return "redirect:/listar";
         }
+        model.put("titulo", "Edición de empleado");
         model.put("empleado", empleado);
-        model.put("titulo", "Edición de empleados");
 
         return "editarempleado";
     }
