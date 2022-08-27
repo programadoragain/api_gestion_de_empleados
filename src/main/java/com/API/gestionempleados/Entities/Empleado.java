@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Table;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -16,7 +14,7 @@ import java.util.Date;
 
 @Entity
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
-@Table(name = "empleados")
+@Table(name="empleados")
 public class Empleado {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -3,6 +3,7 @@ package com.API.gestionempleados.Controllers;
 import com.API.gestionempleados.Entities.Empleado;
 import com.API.gestionempleados.Repositories.EmpleadoRepository;
 import com.API.gestionempleados.Services.EmpleadoServiceInt;
+import com.API.gestionempleados.Utils.Reportes.EmpleadoExportPDF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,7 +16,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -78,5 +85,21 @@ public class EmpleadoController {
             flash.addFlashAttribute("success", "El empleado no existe en la base de datos");
 
         return "redirect:/listar";
+    }
+
+    @GetMapping ("/exportarpdf")
+    public void exportarListadoEmpleadosPdf(HttpServletResponse response) throws IOException {
+        response.setContentType("application/pdf");
+
+        DateFormat formatoFecha= new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String fechaActual= formatoFecha.format(new Date());
+        String cabecera= "Content-Dispositon";
+        String valor= "attachment; file=Empleados_" + fechaActual + ".pdf";
+
+        response.setHeader(cabecera, valor);
+
+        List<Empleado> empleados= empleadoService.findAll();
+        EmpleadoExportPDF export= new EmpleadoExportPDF(empleados);
+        export.exportar(response);
     }
 }

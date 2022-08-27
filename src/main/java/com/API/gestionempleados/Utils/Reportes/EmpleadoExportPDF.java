@@ -12,8 +12,11 @@ import java.io.IOException;
 import java.util.List;
 
 public class EmpleadoExportPDF {
-
     private List<Empleado> listaEmpleados;
+
+    public EmpleadoExportPDF(List<Empleado> empleados) {
+        this.listaEmpleados= empleados;
+    }
 
     private void cabeceraTabla(PdfPTable tabla) {
         PdfPCell celda= new PdfPCell();
